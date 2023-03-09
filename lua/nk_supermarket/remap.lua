@@ -1,3 +1,7 @@
+function setup_keymap(mode, key, mapping)
+	vim.keymap.set(mode, key, mapping, { noremap = true, silent = true })
+end
+
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -14,10 +18,10 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -32,3 +36,17 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+setup_keymap("n", "<leader>n", "o<C-c>")
+setup_keymap("n", "<leader>N", "O<C-c>")
+
+setup_keymap("i", "<C-s>", "<cmd>update<CR><C-c>")
+setup_keymap("n", "<C-s>", ":w<CR>")
+
+setup_keymap("n", "<leader>`", ":vsp<CR><C-w><C-w>:term<CR>i")
+
+setup_keymap("n", "<Esc><Esc>", "<C-\\><C-n>:bd!<CR>")
+
+-- terminal mode
+setup_keymap("t", "<Esc>", "<C-\\><C-N>")
+setup_keymap("t", "<C-h>", "<C-\\><C-N><C-w><C-h>")
