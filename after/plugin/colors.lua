@@ -1,12 +1,16 @@
 function ColorMyPencils(color)
+	-- everforest config
 	color = color or "everforest"
-    vim.g.everforest_background = 'medium'
-    vim.g.everforest_ui_conrtast = 'high'
-    vim.g.everforest_transparent_background = '1'
-	vim.cmd.colorscheme(color)
+	vim.cmd("set background=dark")
+	vim.g.everforest_background = "hard"
+	vim.g.everforest_ui_contast = "high"
 
-	--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	--gruvbox config
+	vim.g.gruvbox_material_foreground = "original"
+	vim.g.gruvbox_material_background = "medium"
+
+	vim.cmd.colorscheme(color)
+	vim.api.nvim_set_hl(0, "LineNr", { link = "Grey" })
 end
 
 ColorMyPencils()

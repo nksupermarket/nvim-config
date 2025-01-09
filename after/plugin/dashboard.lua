@@ -32,7 +32,7 @@ db.setup({
 				key = "oc",
 				action = function()
 					vim.cmd("cd /home/alex/.config/nvim")
-					vim.cmd("Explore /home/alex/.config/nvim")
+					vim.cmd("Neotree /home/alex/.config/nvim position=current")
 				end,
 			},
 			{
@@ -40,7 +40,7 @@ db.setup({
 				icon = "[] ",
 				key = "fp",
 				action = function()
-					vim.cmd("Explore /home/alex/projects/")
+					vim.cmd("Neotree /home/alex/projects/ position=current")
 				end,
 			},
 			{
@@ -57,25 +57,18 @@ db.setup({
 		},
 		project = {
 			enable = true,
-			limit = 6,
+			limit = 4,
 			icon = "󰃖",
 			label = "  Recent Projects",
 			action = function(path)
 				vim.cmd("cd " .. path)
-				vim.cmd("Explore " .. path)
+				vim.cmd("SessionRestore")
 			end,
 		},
 		mru = {
-			limit = 6,
+			limit = 5,
 		},
 		footer = function()
-			-- return {
-			-- 	[[             ]],
-			-- 	[[             ]],
-			-- 	[[ N e o v i m ]],
-			-- 	[[             ]],
-			-- 	[[             ]],
-			-- }
 			return { "" }
 		end,
 	},
@@ -85,7 +78,6 @@ db.setup({
 })
 
 vim.cmd([[
-
 hi DashboardHeader guifg=#a7c080
 hi DashboardShortcut guifg=#7fbbb3
 hi DashboardProjectTitle guifg=#7fbbb3

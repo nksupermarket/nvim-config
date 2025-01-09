@@ -3,19 +3,6 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
 
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
-end
-
-local packer_bootstrap = ensure_packer()
-
 return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
@@ -30,13 +17,11 @@ return require("packer").startup(function(use)
 	use({
 		"sainnhe/everforest",
 		as = "everforest",
-		config = function()
-			vim.cmd("colorscheme everforest")
-		end,
 	})
 
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
+	use("nvim-treesitter/nvim-treesitter-context")
 
 	use("nvim-lua/plenary.nvim")
 	use("ThePrimeagen/harpoon")
@@ -44,6 +29,8 @@ return require("packer").startup(function(use)
 	use("mbbill/undotree")
 
 	use("tpope/vim-fugitive")
+
+	use("HiPhish/rainbow-delimiters.nvim")
 
 	use({
 		"VonHeikemen/lsp-zero.nvim",
@@ -90,17 +77,18 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("prettier/vim-prettier")
-
-	use({ "RRethy/vim-hexokinase", run = "make hexokinase" })
-
 	use("tpope/vim-surround")
 
-	use("David-Kunz/jester")
+	use({
+		"mfussenegger/nvim-dap",
+		requires = {
+			"theHamsta/nvim-dap-virtual-text",
+			"rcarriga/nvim-dap-ui",
+			"nvim-telescope/telescope-dap.nvim",
+		},
+	})
 
-	use("mfussenegger/nvim-dap")
-
-	use("jose-elias-alvarez/null-ls.nvim")
+	use("nvimtools/none-ls.nvim")
 
 	use({
 		"m4xshen/autoclose.nvim",
@@ -109,7 +97,17 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	if packer_bootstrap then
-		require("packer").sync()
-	end
+	use("folke/which-key.nvim")
+
+	use("ray-x/lsp_signature.nvim")
+
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+	})
 end)
