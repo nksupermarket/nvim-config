@@ -1,13 +1,3 @@
-vim.cmd([[
-hi DashboardHeader guifg=#a7c080
-hi DashboardShortcut guifg=#7fbbb3
-hi DashboardProjectTitle guifg=#7fbbb3
-hi DashboardMruTitle guifg=#7fbbb3
-hi DashboardProjectIcon guifg=#7fbbb3
-hi DashboardProjectTitleIcon guifg=#7fbbb3
-hi DashboardMruIcon guifg=#7fbbb3
-hi DashboardFooter guifg=#e69875
-]])
 return {
 	{
 		"glepnir/dashboard-nvim",
@@ -43,8 +33,8 @@ return {
 						icon = "[] ",
 						key = "oc",
 						action = function()
-							vim.cmd("cd /home/alex/.config/nvim")
-							vim.cmd("Neotree /home/alex/.config/nvim position=current")
+							vim.cmd("cd /Users/alex/.config/nvim")
+							vim.cmd("Neotree /Users/alex/.config/nvim position=current")
 						end,
 					},
 					{
@@ -52,7 +42,7 @@ return {
 						icon = "[] ",
 						key = "fp",
 						action = function()
-							vim.cmd("Neotree /home/alex/projects/ position=current")
+							vim.cmd("Neotree /Users/alex/projects/ position=current")
 						end,
 					},
 					{
@@ -88,12 +78,8 @@ return {
 				file_width = 1,
 			},
 		},
-config = function(_, opts)
-        -- Set highlights after dashboard is loaded
-        vim.api.nvim_create_autocmd("ColorScheme", {
-            pattern = "*",
-            callback = function()
-                vim.cmd([[
+		config = function(_, opts)
+			vim.cmd([[
                     hi DashboardHeader guifg=#a7c080
                     hi DashboardShortcut guifg=#7fbbb3
                     hi DashboardProjectTitle guifg=#7fbbb3
@@ -103,9 +89,6 @@ config = function(_, opts)
                     hi DashboardMruIcon guifg=#7fbbb3
                     hi DashboardFooter guifg=#e69875
                 ]])
-            end,
-        })
-    end,
-
+		end,
 	},
 }
