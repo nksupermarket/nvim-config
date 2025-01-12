@@ -9,22 +9,22 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = {
-				"ts_ls",
-				"eslint",
-				"rust_analyzer",
-				"bashls",
-				"gopls",
-				"lua_ls",
-				"sqlls",
-				"yamlls",
-			},
-		},
 		dependencies = {
 			"williamboman/mason.nvim",
 		},
 		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"ts_ls",
+					"eslint",
+					"rust_analyzer",
+					"bashls",
+					"gopls",
+					"lua_ls",
+					"sqlls",
+					"yamlls",
+				},
+			})
 			local lspconfig = require("lspconfig")
 			local opts = {
 				ts_ls = {
