@@ -1,13 +1,3 @@
-vim.cmd([[
-hi DashboardHeader guifg=#a7c080
-hi DashboardShortcut guifg=#7fbbb3
-hi DashboardProjectTitle guifg=#7fbbb3
-hi DashboardMruTitle guifg=#7fbbb3
-hi DashboardProjectIcon guifg=#7fbbb3
-hi DashboardProjectTitleIcon guifg=#7fbbb3
-hi DashboardMruIcon guifg=#7fbbb3
-hi DashboardFooter guifg=#e69875
-]])
 return {
 	{
 		"glepnir/dashboard-nvim",
@@ -88,12 +78,9 @@ return {
 				file_width = 1,
 			},
 		},
-config = function(_, opts)
-        -- Set highlights after dashboard is loaded
-        vim.api.nvim_create_autocmd("ColorScheme", {
-            pattern = "*",
-            callback = function()
-                vim.cmd([[
+		config = function()
+			-- Set highlights after dashboard is loaded
+			vim.cmd([[
                     hi DashboardHeader guifg=#a7c080
                     hi DashboardShortcut guifg=#7fbbb3
                     hi DashboardProjectTitle guifg=#7fbbb3
@@ -103,9 +90,6 @@ config = function(_, opts)
                     hi DashboardMruIcon guifg=#7fbbb3
                     hi DashboardFooter guifg=#e69875
                 ]])
-            end,
-        })
-    end,
-
+		end,
 	},
 }
