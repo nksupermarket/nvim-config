@@ -78,7 +78,8 @@ return {
 				file_width = 1,
 			},
 		},
-		config = function(_, opts)
+		config = function(_)
+			print("Dashboard active")
 			vim.cmd([[
                     hi DashboardHeader guifg=#a7c080
                     hi DashboardShortcut guifg=#7fbbb3
