@@ -5,6 +5,19 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
+		config = function()
+			local lspconfig = require("lspconfig")
+
+			lspconfig.sourcekit.setup({
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+				},
+			})
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
