@@ -5,6 +5,19 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
+		config = function()
+			local lspconfig = require("lspconfig")
+
+			lspconfig.sourcekit.setup({
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+				},
+			})
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -101,10 +114,10 @@ return {
 						vim.diagnostic.open_float()
 					end, opts)
 					vim.keymap.set("n", "[d", function()
-						vim.diagnostic.jump({ count = 1 })
+						vim.diagnostic.goto_prev()
 					end, opts)
 					vim.keymap.set("n", "]d", function()
-						vim.diagnostic.jump({ count = -1 })
+						vim.diagnostic.goto_next()
 					end, opts)
 					vim.keymap.set("n", "<F4>", function()
 						vim.lsp.buf.code_action()
