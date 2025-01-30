@@ -78,7 +78,8 @@ return {
 				file_width = 1,
 			},
 		},
-		config = function()
+		config = function(_, opts)
+			require("dashboard").setup(opts)
 			-- Set highlights after dashboard is loaded
 			vim.cmd([[
                     hi DashboardHeader guifg=#a7c080
