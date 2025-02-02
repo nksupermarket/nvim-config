@@ -1,3 +1,12 @@
+local dotenv = require("dotenv")
+local env, err = dotenv:load(".env")
+
+if not env then
+	print("Error loading .env file:", err)
+	return
+end
+local userPath = env.HOME
+
 return {
 	{
 		"glepnir/dashboard-nvim",
@@ -33,8 +42,8 @@ return {
 						icon = "[] ",
 						key = "oc",
 						action = function()
-							vim.cmd("cd /Users/alex/.config/nvim")
-							vim.cmd("Neotree /Users/alex/.config/nvim position=current")
+							vim.cmd("cd " .. userPath .. ".config/nvim")
+							vim.cmd("Neotree " .. userPath .. ".config/nvim position=current")
 						end,
 					},
 					{
@@ -42,7 +51,7 @@ return {
 						icon = "[] ",
 						key = "fp",
 						action = function()
-							vim.cmd("Neotree /Users/alex/projects/ position=current")
+							vim.cmd("Neotree " .. userPath .. "projects/ position=current")
 						end,
 					},
 					{
@@ -78,12 +87,18 @@ return {
 				file_width = 1,
 			},
 		},
+		lazy = false,
 		config = function(_, opts)
+<<<<<<< HEAD:lua/plugins/dashboard-nvim.lua
 <<<<<<< HEAD
 =======
 			require("dashboard").setup(opts)
 			-- Set highlights after dashboard is loaded
 >>>>>>> 6ceba88be4ecba43b05ffa717dc050ea4233aeb3
+=======
+			require("dashboard").setup(opts)
+			-- Set highlights after dashboard is loaded
+>>>>>>> mac:lua/plugins/dashboard.lua
 			vim.cmd([[
                     hi DashboardHeader guifg=#a7c080
                     hi DashboardShortcut guifg=#7fbbb3

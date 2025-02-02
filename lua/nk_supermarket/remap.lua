@@ -66,4 +66,4 @@ setup_keymap("t", "<C-h>", "<C-\\><C-N><C-w><C-h>")
 
 --visual mode
 -- change all instances of word
-setup_keymap("v", "<leader>s", "y:%s/<C-r>0//g<Left><Left>r<Backspace>")
+vim.keymap.set("v", "<leader>s", '"zy:%s/<C-r>z//gI<left><left><left>')
