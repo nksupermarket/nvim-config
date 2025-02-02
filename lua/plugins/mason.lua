@@ -9,18 +9,6 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = {
-				"ts_ls",
-				"eslint",
-				"rust_analyzer",
-				"bashls",
-				"gopls",
-				"lua_ls",
-				"sqlls",
-				"yamlls",
-			},
-		},
 		dependencies = {
 			"williamboman/mason.nvim",
 		},

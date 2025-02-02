@@ -79,6 +79,11 @@ return {
 			},
 		},
 		config = function(_, opts)
+<<<<<<< HEAD
+=======
+			require("dashboard").setup(opts)
+			-- Set highlights after dashboard is loaded
+>>>>>>> 6ceba88be4ecba43b05ffa717dc050ea4233aeb3
 			vim.cmd([[
                     hi DashboardHeader guifg=#a7c080
                     hi DashboardShortcut guifg=#7fbbb3

@@ -5,6 +5,19 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
+		config = function()
+			local lspconfig = require("lspconfig")
+
+			lspconfig.sourcekit.setup({
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+				},
+			})
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -70,6 +83,13 @@ return {
 						virtual_text = true,
 
 						update_in_insert = true,
+						float = {
+							show_header = false,
+							source = true,
+							border = "rounded",
+							focus = false,
+							width = 120,
+						},
 					})
 
 					vim.keymap.set("n", "gd", function()
@@ -92,7 +112,11 @@ return {
 						vim.lsp.buf.signature_help()
 					end, opts)
 					vim.keymap.set("n", "K", function()
-						vim.lsp.buf.hover()
+						vim.lsp.buf.hover({
+							border = "rounded",
+							max_width = 90,
+							max_height = 20,
+						})
 					end, opts)
 					vim.keymap.set("n", "<leader>vws", function()
 						vim.lsp.buf.workspace_symbol()

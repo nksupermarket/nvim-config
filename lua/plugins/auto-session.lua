@@ -14,6 +14,10 @@ return {
 					require("lualine").refresh() -- refresh lualine so the new session name is displayed in the status bar
 				end,
 			},
+			lazy_support = true,
 		},
+		config = function(_, opts)
+			require("auto-session").setup(opts)
+		end,
 	},
 }
