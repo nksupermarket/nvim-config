@@ -89,16 +89,9 @@ return {
 		},
 		lazy = false,
 		config = function(_, opts)
-<<<<<<< HEAD:lua/plugins/dashboard-nvim.lua
-<<<<<<< HEAD
-=======
+			-- Set highlights after dashboard is loaded
 			require("dashboard").setup(opts)
 			-- Set highlights after dashboard is loaded
->>>>>>> 6ceba88be4ecba43b05ffa717dc050ea4233aeb3
-=======
-			require("dashboard").setup(opts)
-			-- Set highlights after dashboard is loaded
->>>>>>> mac:lua/plugins/dashboard.lua
 			vim.cmd([[
                     hi DashboardHeader guifg=#a7c080
                     hi DashboardShortcut guifg=#7fbbb3
