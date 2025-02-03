@@ -38,14 +38,30 @@ end
 -- Load environment variables into _G table
 function dotenv:load(filename)
 	filename = filename or ".env"
-	local content, err = readFile(filename)
-	if not content then
-		return nil, err
+
+	-- Try multiple possible locations for the .env file
+	local possible_paths = {
+		vim.fn.getcwd() .. "/" .. filename, -- Current working directory
+		vim.fn.stdpath("config") .. "/" .. filename, -- Neovim config directory
+		vim.fn.expand("~/.config/nvim/") .. filename, -- Explicit config path
+		vim.fn.expand("~") .. "/.config/nvim/" .. filename, -- Full home config path
+	}
+
+	-- Debug info
+	vim.notify("Looking for .env file...", vim.log.levels.INFO)
+	for _, path in ipairs(possible_paths) do
+		local content, err = readFile(path)
+		if content then
+			local envVars = parseEnv(content)
+			return envVars
+		end
 	end
 
-	local envVars = parseEnv(content)
-
-	return envVars
+	-- If we get here, we couldn't find the file
+	local error_msg = "Could not find .env file in any of the following locations:\n"
+		.. table.concat(possible_paths, "\n")
+	vim.notify(error_msg, vim.log.levels.ERROR)
+	return nil, error_msg
 end
 
 return dotenv
