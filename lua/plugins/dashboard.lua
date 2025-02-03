@@ -1,4 +1,4 @@
-local dotenv = require("dotenv")
+local dotenv = require("nk_supermarket.dotenv")
 local env, err = dotenv:load(".env")
 
 if not env then
